@@ -6,11 +6,27 @@ positions:
 clients:
   - url: http://loki:3100/loki/api/v1/push
 scrape_configs:
-  - job_name: demo
+  - job_name: graphnode
     pipeline_stages:
     static_configs:
       - targets:
           - localhost
         labels:
-          job: demo
-          __path__: /var/log/demo/*
+          job: graphnode
+          __path__: /var/log/graphnode/*
+  - job_name: go-kardia
+    pipeline_stages:
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: go-kardia
+          __path__: /var/log/go-kardia/*
+  - job_name: go-u2u
+    pipeline_stages:
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: go-u2u
+          __path__: /var/log/go-u2u/*

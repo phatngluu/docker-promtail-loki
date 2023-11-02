@@ -8,7 +8,7 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     ports:
-      - "3000:3000"
+      - "3001:3000"
     volumes:
       - $PWD/grafana:/var/lib/grafana/
     networks:
@@ -30,7 +30,9 @@ services:
       container_name: promtail
       restart: unless-stopped
       volumes:
-        - /home/steven/.local/share/docker/containers/264872086aa79b5b1869ce28b460a04d1d82e119e41d396cbf0aadcbb39b73f0:/var/log/demo
+        - /home/steven/.local/share/docker/containers/fb1db74b1fb5d9b5e5c983f0dfba3e881ad57c4583948b631d32a4c0ac226b77:/var/log/graphnode
+        - /home/steven/.local/share/docker/containers/42a296d9b81b58d1ac61f6d058f903a4ad7108bcc1d41c7b3608192297d0e391:/var/log/go-u2u
+        - /home/steven/.local/share/docker/containers/473aaf11297ee89ed8bc5f1c222411c5cadba9daabba560548b6588099d4aa62:/var/log/go-kardia
         - ./promtail-config.yaml:/etc/promtail/config.yml
       command: -config.file=/etc/promtail/config.yml
       networks:
